@@ -44,7 +44,6 @@ xhr.open(form.method, form.action, true);
 xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
 xhr.send(JSON.stringify(data));
 xhr.onloadend = function() {
-  console.log('Form submit success');
   document.getElementById('feedback').innerText = 'Gracias por tu entrega. Si tu oraste esta oracion de corazon, entonces has empezado una vida nueva. Efesios 2.8 dice, \"Porque por gracia sois salvos por medio de la fe; y esto no de vosotros, pues es don de Dios.\"';
 };
 });
