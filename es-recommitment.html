@@ -1,0 +1,52 @@
+<!--Embed on page-->
+<form id="commitmentForm" method="POST" action="https://jesuscares.com/rest/forms">
+  <input name="language" hidden value="es">
+  <input name="type" hidden value="recommitment">
+  <div class="form-group">
+    <label for="inputFirstName">*Nombre</label>
+    <input type="text" class="form-control" id="inputFirstName" name="firstName" required>
+  </div>
+  <div class="form-group">
+    <label for="inputLastName">*Apellido</label>
+    <input type="text" class="form-control" id="inputLastName" name="lastName" required>
+  </div>
+  <div class="form-group">
+    <label for="inputEmail">Email</label>
+    <input type="email" class="form-control" id="inputEmail" name="email" required>
+  </div>
+  <div class="form-group">
+    <label for="inputCommitment">*Quiero una relación con Jesus hoy. Nunca antes le he entregado mi vida a Él.</label>
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="commitment" id="inputCommitmentYes" value="yes" checked required>
+        Sí
+      </label>
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="commitment" id="inputCommitmentNo" value="no">
+        No
+      </label>
+  </div>
+  <div class="form-group">
+    <label for="inputAge">Edad</label>
+    <input type="number" class="form-control" id="inputAge" name="age" step="1" min="1" max="180">
+  </div>
+  <button type="submit" class="btn btn-primary" id="commitmentFormSubmit">Enviar</button>
+  <p id="feedback"></p>
+</form>
+<script>
+var form = document.getElementById('commitmentForm');
+form.addEventListener('submit', function(event) {
+event.preventDefault(); // Prevents form from being submitted
+document.getElementById('commitmentFormSubmit').disabled = true;
+var data = {};
+for (var i = 0, ii = form.length; i < ii; ++i) {
+  if (form[i].name) data[form[i].name] = form[i].value;
+}
+var xhr = new XMLHttpRequest();
+xhr.open(form.method, form.action, true);
+xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+xhr.send(JSON.stringify(data));
+xhr.onloadend = function() {
+  document.getElementById('feedback').innerText = 'Gracias por tu entrega. Si tu oraste esta oracion de corazon, entonces has empezado una vida nueva. Efesios 2.8 dice, \"Porque por gracia sois salvos por medio de la fe; y esto no de vosotros, pues es don de Dios.\"';
+};
+});
+</script>
