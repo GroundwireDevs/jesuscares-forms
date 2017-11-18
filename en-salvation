@@ -1,0 +1,53 @@
+<!--Embed on page-->
+<form id="commitmentForm" method="POST" action="https://jesuscares.com/rest/forms">
+  <input name="language" hidden value="en">
+  <input name="type" hidden value="salvation">
+  <div class="form-group">
+    <label for="inputFirstName">*First name</label>
+    <input type="text" class="form-control" id="inputFirstName" name="first-name" placeholder="Your first name" required>
+  </div>
+  <div class="form-group">
+    <label for="inputLastName">*Last name</label>
+    <input type="text" class="form-control" id="inputLastName" name="last-name" placeholder="Your last name" required>
+  </div>
+  <div class="form-group">
+    <label for="inputEmail">Email</label>
+    <input type="email" class="form-control" id="inputEmail" name="email" placeholder="name@example.com" required>
+  </div>
+  <div class="form-group">
+    <label for="inputCommitment">*I chose a relationship with Jesus today. I have never before surrendered my heart to Him.</label>
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="commitment" id="inputCommitmentYes" value="yes" checked required>
+        Sí
+      </label>
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="commitment" id="inputCommitmentNo" value="no">
+        No
+      </label>
+  </div>
+  <div class="form-group">
+    <label for="inputAge">Age</label>
+    <input type="number" class="form-control" id="inputAge" name="age" step="1" min="1" max="180" placeholder="20">
+  </div>
+  <button type="submit" class="btn btn-primary" id="commitmentFormSubmit">Send</button>
+  <p id="feedback"></p>
+</form>
+<script>
+var form = document.getElementById('commitmentForm');
+form.addEventListener('submit', function(event) {
+event.preventDefault(); // Prevents form from being submitted
+document.getElementById('commitmentFormSubmit').disabled = true;
+var data = {};
+for (var i = 0, ii = form.length; i < ii; ++i) {
+  if (form[i].name) data[form[i].name] = form[i].value;
+}
+var xhr = new XMLHttpRequest();
+xhr.open(form.method, form.action, true);
+xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+xhr.send(JSON.stringify(data));
+xhr.onloadend = function() {
+  document.getElementById('feedback').innerText = 'Thank you for your submission. If you prayed this prayer with your heart, you have started a new journey. Ephesians 2:8 says, \"God saved you by his grace when you believed. And you can\’t take credit for this; it is a gift from God.\"';
+};
+});
+dataLayer.push({'event': 'Salvation Form Submitted'});
+</script>
