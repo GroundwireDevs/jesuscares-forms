@@ -67,8 +67,8 @@
     xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     xhr.send(JSON.stringify(body));
     xhr.onloadend = function() {
-      document.getElementById('feedback').innerText =
-        'Thank you for your submission. If you prayed this prayer with your heart, the decision you have made is a turning point in your life. Luke 15:7 says, \"In the same way, there is more joy in heaven over one lost sinner who repents and returns to God than over ninety-nine others who are righteous and haven\'t strayed away!\"';
+      document.getElementById('feedback').innerHTML =
+        '<p>Thank you for your submission. If you prayed this prayer with your heart, the decision you have made is a turning point in your life. Luke 15:7 says, \"In the same way, there is more joy in heaven over one lost sinner who repents and returns to God than over ninety-nine others who are righteous and haven\'t strayed away!\"</p><p>We encourage you to take this opportunity to grow in your walk with God in a series sent to your phone. We\'ll send you seven videos over seven days via text. These will cover topics like what salvation is, prayer and how God sees you. See <a href=\'https://groundwire.net/7-steps\'>7 Steps</a> for information on how to sign up.</p>';
     };
   });
   dataLayer.push({
